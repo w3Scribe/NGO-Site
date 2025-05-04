@@ -48,22 +48,22 @@ function SignupPage() {
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: { 
-      y: 0, 
+    visible: {
+      y: 0,
       opacity: 1,
-      transition: { type: "spring", stiffness: 300, damping: 24 }
-    }
+      transition: { type: 'spring', stiffness: 300, damping: 24 },
+    },
   };
 
   const onSubmit = (values: z.infer<typeof signupSchema>) => {
@@ -71,7 +71,7 @@ function SignupPage() {
   };
 
   return (
-    <motion.div 
+    <motion.div
       className="flex min-h-screen items-center justify-center bg-slate-50 relative overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -79,57 +79,59 @@ function SignupPage() {
       transition={{ duration: 0.5 }}
     >
       {/* Background Aura Effects */}
-      <motion.div 
+      <motion.div
         className="absolute -top-40 right-1/4 w-96 h-96 bg-teal-300 rounded-full opacity-20 blur-3xl"
         animate={{ y: [0, -10, 0] }}
-        transition={{ 
+        transition={{
           duration: 6,
           repeat: Infinity,
-          repeatType: "reverse" as const,
-          ease: "easeInOut"
+          repeatType: 'reverse' as const,
+          ease: 'easeInOut',
         }}
       ></motion.div>
-      <motion.div 
+      <motion.div
         className="absolute top-1/2 -left-20 w-80 h-80 bg-primary rounded-full opacity-20 blur-3xl"
         animate={{ y: [0, -10, 0] }}
-        transition={{ 
+        transition={{
           duration: 6,
           repeat: Infinity,
-          repeatType: "reverse" as const,
-          ease: "easeInOut",
-          delay: 2.5
+          repeatType: 'reverse' as const,
+          ease: 'easeInOut',
+          delay: 2.5,
         }}
       ></motion.div>
-      <motion.div 
+      <motion.div
         className="absolute -bottom-20 right-1/3 w-72 h-72 bg-purple-400 rounded-full opacity-20 blur-3xl"
         animate={{ y: [0, -10, 0] }}
-        transition={{ 
+        transition={{
           duration: 6,
           repeat: Infinity,
-          repeatType: "reverse" as const,
-          ease: "easeInOut",
-          delay: 1.2
+          repeatType: 'reverse' as const,
+          ease: 'easeInOut',
+          delay: 1.2,
         }}
       ></motion.div>
-           
+
       {/* Noise Texture */}
-      <div className="absolute inset-0 opacity-5" 
-           style={{ 
-             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-             backgroundSize: "200px" 
-           }}>
-      </div>
-      
-      <motion.div 
+      <div
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          backgroundSize: '200px',
+        }}
+      ></div>
+
+      <motion.div
         className="w-full max-w-md p-8 space-y-6 bg-white shadow-lg rounded-lg border border-gray-100 backdrop-blur-md relative z-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        whileHover={{ 
-          boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+        whileHover={{
+          boxShadow:
+            '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
         }}
       >
-        <motion.h2 
+        <motion.h2
           className="text-2xl font-bold text-center bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -149,15 +151,15 @@ function SignupPage() {
             <motion.div variants={itemVariants}>
               <FormField
                 control={form.control}
-                name="username"  
+                name="username"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Username</FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <Input 
-                          placeholder="Choose a username" 
-                          {...field} 
+                        <Input
+                          placeholder="Choose a username"
+                          {...field}
                           className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
                         />
                         <motion.div
@@ -185,8 +187,8 @@ function SignupPage() {
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <Input 
-                          placeholder="Your email address" 
+                        <Input
+                          placeholder="Your email address"
                           {...field}
                           className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
                         />
@@ -215,9 +217,9 @@ function SignupPage() {
                     <FormLabel>Password</FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <Input 
-                          type="password" 
-                          placeholder="Create a password" 
+                        <Input
+                          type="password"
+                          placeholder="Create a password"
                           {...field}
                           className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
                         />
@@ -246,9 +248,9 @@ function SignupPage() {
                     <FormLabel>Confirm Password</FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <Input 
-                          type="password" 
-                          placeholder="Confirm your password" 
+                        <Input
+                          type="password"
+                          placeholder="Confirm your password"
                           {...field}
                           className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
                         />
@@ -273,8 +275,8 @@ function SignupPage() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-700 transition-all duration-300"
                 onClick={() => form.handleSubmit(onSubmit)()}
               >
@@ -283,19 +285,19 @@ function SignupPage() {
             </motion.div>
           </motion.div>
         </Form>
-        
-        <motion.p 
+
+        <motion.p
           className="text-center text-sm text-gray-600 mt-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.5 }}
         >
           Already have an account?{' '}
-          <motion.span
-            whileHover={{ scale: 1.05 }}
-            className="inline-block"
-          >
-            <Link to="/signin" className="text-primary hover:text-purple-700 hover:underline transition-colors">
+          <motion.span whileHover={{ scale: 1.05 }} className="inline-block">
+            <Link
+              to="/signin"
+              className="text-primary hover:text-purple-700 hover:underline transition-colors"
+            >
               Sign In
             </Link>
           </motion.span>

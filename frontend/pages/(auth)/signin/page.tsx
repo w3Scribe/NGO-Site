@@ -1,14 +1,14 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
 
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { Button } from 'components/ui/button'
-import { Checkbox } from 'components/ui/checkbox'
-import { Input } from 'components/ui/input'
-import { motion } from 'framer-motion'
-import { Lock, Mail, User } from 'lucide-react'
-import React from 'react'
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { Button } from 'components/ui/button';
+import { Checkbox } from 'components/ui/checkbox';
+import { Input } from 'components/ui/input';
+import { motion } from 'framer-motion';
+import { Lock, Mail, User } from 'lucide-react';
+import React from 'react';
 
 import {
   Form,
@@ -17,25 +17,25 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "components/ui/form"
+} from 'components/ui/form';
 
 // Define the validation schema using Zod
 const formSchema = z.object({
   username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: 'Username must be at least 2 characters.',
   }),
   email: z.string().email({
-    message: "Please enter a valid email address.",
+    message: 'Please enter a valid email address.',
   }),
   password: z.string().min(6, {
-    message: "Password must be at least 6 characters.",
+    message: 'Password must be at least 6 characters.',
   }),
-  remember: z.boolean().default(false).optional(), 
-})
+  remember: z.boolean().default(false).optional(),
+});
 
 export const Route = createFileRoute('/(auth)/signin/')({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
   // Add animation styles to document
@@ -76,103 +76,105 @@ function RouteComponent() {
       }
     `;
     document.head.appendChild(styleEl);
-    
+
     return () => {
       document.head.removeChild(styleEl);
     };
   }, []);
-  
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
-      email: "",
-      password: "",
+      username: '',
+      email: '',
+      password: '',
       remember: false,
     },
-    mode: "onChange"
-  })
+    mode: 'onChange',
+  });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+    console.log(values);
   }
 
   return (
-    <motion.div 
+    <motion.div
       className="flex min-h-screen items-center justify-center bg-slate-50 relative overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
       {/* Background Aura Effects */}
-      <motion.div 
+      <motion.div
         className="absolute -top-40 -left-40 w-96 h-96 bg-blue-300 rounded-full opacity-20 blur-3xl"
-        animate={{ 
+        animate={{
           scale: [1, 1.2, 1],
           opacity: [0.2, 0.3, 0.2],
-          y: [0, -20, 0]
+          y: [0, -20, 0],
         }}
-        transition={{ 
+        transition={{
           duration: 8,
           repeat: Infinity,
-          repeatType: "reverse"
+          repeatType: 'reverse',
         }}
       ></motion.div>
-      <motion.div 
+      <motion.div
         className="absolute top-1/3 -right-20 w-80 h-80 bg-purple-400 rounded-full opacity-20 blur-3xl"
-        animate={{ 
+        animate={{
           scale: [1, 1.2, 1],
           opacity: [0.2, 0.3, 0.2],
-          y: [0, 20, 0]
+          y: [0, 20, 0],
         }}
-        transition={{ 
+        transition={{
           duration: 10,
           repeat: Infinity,
-          repeatType: "reverse",
-          delay: 2
+          repeatType: 'reverse',
+          delay: 2,
         }}
       ></motion.div>
-      <motion.div 
+      <motion.div
         className="absolute -bottom-20 left-1/4 w-72 h-72 bg-primary rounded-full opacity-20 blur-3xl"
-        animate={{ 
+        animate={{
           scale: [1, 1.2, 1],
           opacity: [0.2, 0.3, 0.2],
-          x: [0, -20, 0]
+          x: [0, -20, 0],
         }}
-        transition={{ 
+        transition={{
           duration: 9,
           repeat: Infinity,
-          repeatType: "reverse",
-          delay: 1
+          repeatType: 'reverse',
+          delay: 1,
         }}
       ></motion.div>
-           
+
       {/* Noise Texture */}
-      <div className="absolute inset-0 opacity-5" 
-           style={{ 
-             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-             backgroundSize: "200px" 
-           }}>
-      </div>
-      
-      <motion.div 
+      <div
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          backgroundSize: '200px',
+        }}
+      ></div>
+
+      <motion.div
         className="w-full max-w-md p-8 space-y-6 bg-white shadow-lg rounded-lg border border-gray-100 backdrop-blur-md relative z-10"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
-          type: "spring",
+          type: 'spring',
           stiffness: 300,
           damping: 20,
           duration: 0.7,
         }}
-        whileHover={{ 
-          boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+        whileHover={{
+          boxShadow:
+            '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
           y: -5,
-          transition: { duration: 0.3 }
+          transition: { duration: 0.3 },
         }}
       >
-        <motion.h2 
+        <motion.h2
           className="text-2xl font-bold text-center bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -214,7 +216,7 @@ function RouteComponent() {
                     Email
                   </FormLabel>
                   <FormControl>
-                    <motion.div 
+                    <motion.div
                       className="relative"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -222,8 +224,13 @@ function RouteComponent() {
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
                     >
-                      <Input type="email" placeholder="Enter your email" {...field} className="hover:border-primary/50 focus-visible:ring-primary/30" />
-                      <motion.div 
+                      <Input
+                        type="email"
+                        placeholder="Enter your email"
+                        {...field}
+                        className="hover:border-primary/50 focus-visible:ring-primary/30"
+                      />
+                      <motion.div
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                         whileHover={{ rotate: 10 }}
                       >
@@ -251,7 +258,7 @@ function RouteComponent() {
                     Password
                   </FormLabel>
                   <FormControl>
-                    <motion.div 
+                    <motion.div
                       className="relative"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -259,8 +266,13 @@ function RouteComponent() {
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
                     >
-                      <Input type="password" placeholder="Enter your password" {...field} className="hover:border-primary/50 focus-visible:ring-primary/30" />
-                      <motion.div 
+                      <Input
+                        type="password"
+                        placeholder="Enter your password"
+                        {...field}
+                        className="hover:border-primary/50 focus-visible:ring-primary/30"
+                      />
+                      <motion.div
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                         whileHover={{ rotate: 10 }}
                       >
@@ -289,9 +301,7 @@ function RouteComponent() {
                       />
                     </FormControl>
                     <div className="space-y-1 leading-none">
-                      <FormLabel>
-                        Remember me
-                      </FormLabel>
+                      <FormLabel>Remember me</FormLabel>
                     </div>
                   </FormItem>
                 </motion.div>
@@ -304,8 +314,8 @@ function RouteComponent() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-700 transition-all duration-300"
               >
                 Sign In
@@ -313,18 +323,18 @@ function RouteComponent() {
             </motion.div>
           </form>
         </Form>
-        <motion.p 
+        <motion.p
           className="text-center text-sm text-gray-600"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 0.5 }}
         >
           Don&apos;t have an account?{' '}
-          <motion.span
-            whileHover={{ scale: 1.05 }}
-            className="inline-block"
-          >
-            <Link to={'/signup'} className="text-primary hover:text-purple-700 hover:underline transition-colors">
+          <motion.span whileHover={{ scale: 1.05 }} className="inline-block">
+            <Link
+              to={'/signup'}
+              className="text-primary hover:text-purple-700 hover:underline transition-colors"
+            >
               Sign Up
             </Link>
           </motion.span>

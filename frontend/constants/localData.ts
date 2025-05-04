@@ -8,8 +8,8 @@ export const teamMembers = [
     bio: 'Pune Vidyapeethatun Computer Vidnyanamadhye Padavidhar. Samajik Karyasathi Samarpit.', // पुणे विद्यापीठातून कंप्युटर विज्ञानामध्ये पदवीधर. सामाजिक कार्यासाठी समर्पित.
     socialLinks: {
       twitter: 'https://twitter.com/mrudula',
-      linkedin: 'https://linkedin.com/in/mrudula-maske'
-    }
+      linkedin: 'https://linkedin.com/in/mrudula-maske',
+    },
   },
   {
     id: 2,
@@ -19,8 +19,8 @@ export const teamMembers = [
     bio: 'Nagpur Madhil 20 Varshancha Anubhav Aslele Prakalp Vyavasthapak Ani Samajsevak.', // नागपूर मधील २० वर्षांचा अनुभव असलेले प्रकल्प व्यवस्थापक आणि समाजसेवक.
     socialLinks: {
       twitter: 'https://twitter.com/sudhir',
-      linkedin: 'https://linkedin.com/in/sudhir-gadpayle'
-    }
+      linkedin: 'https://linkedin.com/in/sudhir-gadpayle',
+    },
   },
   {
     id: 3,
@@ -30,9 +30,9 @@ export const teamMembers = [
     bio: 'Amravati Yethil Sanchar Tadnya, 7 Varshancha Anubhav Aslele.', // अमरावती येथील संचार तज्ञ, ७ वर्षांचा अनुभव असलेले.
     socialLinks: {
       twitter: 'https://twitter.com/priya',
-      linkedin: 'https://linkedin.com/in/priya-wankhede'
-    }
-  }
+      linkedin: 'https://linkedin.com/in/priya-wankhede',
+    },
+  },
 ];
 
 // User Testimonials
@@ -43,7 +43,8 @@ export const testimonials = [
     location: 'Pune', // पुणे
     image: '/testimonials/madhuri.jpg',
     rating: 5,
-    comment: 'Asgaon Charity Sansthene Majhya Gavatil Mulansathi Shaikshanik Samagri Puravali. Tyanche Karya Atishay Changle Aahe!' // अस्गाव चॅरिटी संस्थेने माझ्या गावातील मुलांसाठी शैक्षणिक सामग्री पुरवली. त्यांचे कार्य अतिशय चांगले आहे!
+    comment:
+      'Asgaon Charity Sansthene Majhya Gavatil Mulansathi Shaikshanik Samagri Puravali. Tyanche Karya Atishay Changle Aahe!', // अस्गाव चॅरिटी संस्थेने माझ्या गावातील मुलांसाठी शैक्षणिक सामग्री पुरवली. त्यांचे कार्य अतिशय चांगले आहे!
   },
   {
     id: 2,
@@ -51,7 +52,8 @@ export const testimonials = [
     location: 'Nagpur', // नागपूर
     image: '/testimonials/rajesh.jpg',
     rating: 4,
-    comment: 'Gelya Varshi Amhi Ya Sansthesobat Vruksharopan Kele, Tyanchya Sahakaryabaddal Mi Krutadnya Aahe.' // गेल्या वर्षी आम्ही या संस्थेसोबत वृक्षारोपण केले, त्यांच्या सहकार्याबद्दल मी कृतज्ञ आहे.
+    comment:
+      'Gelya Varshi Amhi Ya Sansthesobat Vruksharopan Kele, Tyanchya Sahakaryabaddal Mi Krutadnya Aahe.', // गेल्या वर्षी आम्ही या संस्थेसोबत वृक्षारोपण केले, त्यांच्या सहकार्याबद्दल मी कृतज्ञ आहे.
   },
   {
     id: 3,
@@ -59,8 +61,9 @@ export const testimonials = [
     location: 'Pauni', // पौनी
     image: '/testimonials/kiran.jpg',
     rating: 5,
-    comment: 'Pauni Madhil Amchya Shalela Milalelya Madatimule Anek Vidyarthyanchi Shikshan Suralit Zhale Aahe. Dhanyavad!' // पौनी मधील आमच्या शाळेला मिळालेल्या मदतीमुळे अनेक विद्यार्थ्यांचे शिक्षण सुरळीत झाले आहे. धन्यवाद!
-  }
+    comment:
+      'Pauni Madhil Amchya Shalela Milalelya Madatimule Anek Vidyarthyanchi Shikshan Suralit Zhale Aahe. Dhanyavad!', // पौनी मधील आमच्या शाळेला मिळालेल्या मदतीमुळे अनेक विद्यार्थ्यांचे शिक्षण सुरळीत झाले आहे. धन्यवाद!
+  },
 ];
 
 // Office Locations
@@ -71,7 +74,7 @@ export const officeLocations = [
     address: 'Dusra Majla, Lakshmi Road, Shivajinagar, Pune - 411005', // दुसरा मजला, लक्ष्मी रोड, शिवाजीनगर, पुणे - ४११००५
     phone: '+91 98765 43210',
     email: 'pune@charitysmile.org',
-    coordinates: { lat: 18.5204, lng: 73.8567 }
+    coordinates: { lat: 18.5204, lng: 73.8567 },
   },
   {
     id: 2,
@@ -79,7 +82,7 @@ export const officeLocations = [
     address: 'Civil Lines, Nagpur - 440001', // सिव्हिल लाईन्स, नागपूर - ४४०००१
     phone: '+91 98765 12345',
     email: 'nagpur@charitysmile.org',
-    coordinates: { lat: 21.1458, lng: 79.0882 }
+    coordinates: { lat: 21.1458, lng: 79.0882 },
   },
   {
     id: 3,
@@ -87,8 +90,8 @@ export const officeLocations = [
     address: 'Mukhya Chauk, Asgaon, Jilha Wardha - 442304', // मुख्य चौक, अस्गाव, जिल्हा वर्धा - ४४२३०४
     phone: '+91 95678 12345',
     email: 'asgaon@charitysmile.org',
-    coordinates: { lat: 20.7002, lng: 78.6912 } // Approximate coordinates
-  }
+    coordinates: { lat: 20.7002, lng: 78.6912 }, // Approximate coordinates
+  },
 ];
 
 // Projects in Maharashtra
@@ -102,7 +105,7 @@ export const localProjects = [
     startDate: '2022-06-15',
     status: 'Purna', // पूर्ण (Completed)
     impact: '350 Vidyarthi Labhanvit', // ३५० विद्यार्थी लाभान्वित
-    donation: '₹8,50,000'
+    donation: '₹8,50,000',
   },
   {
     id: 2,
@@ -113,19 +116,20 @@ export const localProjects = [
     startDate: '2023-07-01',
     status: 'Chalu', // चालू (Ongoing)
     impact: '25 Gave, 5000 Zhade Lavli', // २५ गावे, ५००० झाडे लावली
-    donation: '₹3,25,000'
+    donation: '₹3,25,000',
   },
   {
     id: 3,
     title: 'Pune Digital Shikshan', // पुणे डिजिटल शिक्षण
     location: 'Pune Gramin', // पुणे ग्रामीण
-    description: 'Pune Jilhyatil Gramin Bhagatil 15 Shalanmadhye Digital Shikshan Sadhane Puravane.', // पुणे जिल्ह्यातील ग्रामीण भागातील १५ शाळांमध्ये डिजिटल शिक्षण साधने पुरवणे.
+    description:
+      'Pune Jilhyatil Gramin Bhagatil 15 Shalanmadhye Digital Shikshan Sadhane Puravane.', // पुणे जिल्ह्यातील ग्रामीण भागातील १५ शाळांमध्ये डिजिटल शिक्षण साधने पुरवणे.
     image: '/projects/pune-digital.jpg',
     startDate: '2023-01-10',
     status: 'Chalu', // चालू (Ongoing)
     impact: '1500 Vidyarthi Labhanvit', // १५०० विद्यार्थी लाभान्वित
-    donation: '₹12,00,000'
-  }
+    donation: '₹12,00,000',
+  },
 ];
 
 // Common Marathi phrases for the website (Latin script)
@@ -137,7 +141,7 @@ export const marathiPhrases = {
   ourMission: 'Amche Dhyeya', // आमचे ध्येय
   signIn: 'Pravesh Kara', // प्रवेश करा
   signUp: 'Nondani Kara', // नोंदणी करा
-  readMore: 'Adhik Vacha' // अधिक वाचा
+  readMore: 'Adhik Vacha', // अधिक वाचा
 };
 
 // NGOs based in Maharashtra
@@ -149,7 +153,7 @@ export const maharashtraNGOs = [
     focus: 'Shikshan Ani Arogya', // शिक्षण आणि आरोग्य
     since: 1998,
     contact: 'info@wardhaseva.org',
-    website: 'https://wardhaseva.org'
+    website: 'https://wardhaseva.org',
   },
   {
     id: 2,
@@ -158,7 +162,7 @@ export const maharashtraNGOs = [
     focus: 'Mahila Sakshamikaran', // महिला सक्षमीकरण
     since: 2005,
     contact: 'contact@punevikas.org',
-    website: 'https://punevikas.org'
+    website: 'https://punevikas.org',
   },
   {
     id: 3,
@@ -167,6 +171,6 @@ export const maharashtraNGOs = [
     focus: 'Paryavaran Sanrakshan', // पर्यावरण संरक्षण
     since: 2010,
     contact: 'green@nagpurenvirofriends.org',
-    website: 'https://nagpurenvirofriends.org'
-  }
+    website: 'https://nagpurenvirofriends.org',
+  },
 ];
