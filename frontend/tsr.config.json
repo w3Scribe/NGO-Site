@@ -1,0 +1,10 @@
+{
+  "indexToken": "page",
+  "routesDirectory": "./pages",
+  "autoCodeSplitting": true,
+  "generatedRouteTree": "./app/app.gen.ts",
+  "disableTypes": false,
+  "experimental": {
+    "keepFileExtension": true
+  }
+}
