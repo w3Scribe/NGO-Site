@@ -3,13 +3,13 @@ import viteReact from '@vitejs/plugin-react';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
-import viteTSCongfigPaths from 'vite-tsconfig-paths';
+import viteTsconfigPaths from 'vite-tsconfig-paths';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   plugins: [
-    viteTSCongfigPaths(),
+    viteTsconfigPaths(),
     viteReact({
       babel: {
         plugins: [['babel-plugin-react-compiler']],
@@ -30,7 +30,7 @@ export default defineConfig({
       '@pages': path.resolve(__dirname, './pages'),
       '@utils': path.resolve(__dirname, './utils'),
       '@assets': path.resolve(__dirname, './assets'),
-      '@public': path.resolve(__dirname, './public')
+      '@public': path.resolve(__dirname, './public'),
     },
   },
   server: {

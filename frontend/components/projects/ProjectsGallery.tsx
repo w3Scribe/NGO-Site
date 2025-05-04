@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Calendar, DollarSign, Users } from 'lucide-react';
-import Image from 'next/image';
+// import Image from 'next/image';
+// Use a standard img tag instead of next/image
 import { localProjects, marathiPhrases } from '../../constants';
 import { Button } from '../ui/button';
 
@@ -27,11 +28,11 @@ export default function ProjectsGallery() {
               transition={{ delay: index * 0.1, duration: 0.4 }}
             >
               <div className="relative h-48 w-full">
-                <Image 
+                <img 
                   src={project.image} 
                   alt={project.title}
-                  fill
-                  className="object-cover"
+                  className="object-cover w-full h-full"
+                  style={{ objectFit: 'cover' }}
                 />
                 <div className="absolute top-3 right-3 bg-primary text-white text-sm font-medium py-1 px-3 rounded-full">
                   {project.status}
