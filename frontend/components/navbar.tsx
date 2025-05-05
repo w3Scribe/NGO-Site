@@ -1,8 +1,8 @@
 import { useAuth } from '@/lib/useAuth';
 import { Link, useRouterState } from '@tanstack/react-router';
-import { Button } from 'components/ui/button';
+import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import { cn } from 'lib/utils';
+import { cn } from '@/lib/utils';
 import { Menu, Shield, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import {
@@ -269,3 +269,4 @@ export default function Navbar() {
     </motion.header>
   );
 }
+

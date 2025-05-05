@@ -17,7 +17,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from 'components/ui/form';
+} from '@/components/ui/form';
 
 // Define the validation schema using Zod
 const userFormSchema = z.object({
@@ -456,3 +456,4 @@ function RouteComponent() {
     </motion.div>
   );
 }
+
