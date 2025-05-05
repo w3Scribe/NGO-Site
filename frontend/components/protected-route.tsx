@@ -1,4 +1,4 @@
-import { useAuth } from '@/lib/AuthContext';
+import { useAuth } from '@/lib/useAuth';
 import { useNavigate } from '@tanstack/react-router';
 import { useEffect } from 'react';
 

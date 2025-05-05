@@ -58,15 +58,14 @@ export const renderIcon = (
   className = "h-5 w-5",
   strokeWidth = 2
 ) => {
-  const icon = svgIcons[iconKey];
-  return {
+  const icon = svgIcons[iconKey]; return {
     viewBox: icon.viewBox || "0 0 24 24",
     className,
     fill: "none",
     stroke: "currentColor",
     strokeWidth,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
+    strokeLinecap: "round" as "round",
+    strokeLinejoin: "round" as "round",
     path: icon.path
   };
 };

@@ -1,4 +1,4 @@
-import { useAuth } from '@/lib/AuthContext';
+import { useAuth } from '@/lib/useAuth';
 import { Link, useRouterState } from '@tanstack/react-router';
 import { Button } from 'components/ui/button';
 import { motion } from 'framer-motion';
@@ -20,18 +20,16 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { user, status, logout } = useAuth();
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  return (
-    <motion.header      className={cn(
+  }, []);  return (
+    <motion.header      
+      className={cn(
         'fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5 text-white bg-white shadow-sm border-b border-zinc-200 transition-all duration-300',
         isScrolled && 'py-3'
       )}
@@ -54,7 +52,7 @@ export default function Navbar() {
         </Link>
       </motion.div>
 
-      {/* Desktop Navigation */}      <div className="hidden md:flex items-center gap-6">
+      <div className="hidden md:flex items-center gap-6">
         {navLinks.map((item, index) => (
           <motion.div
             key={item.path}
@@ -69,10 +67,8 @@ export default function Navbar() {
               className={cn(
                 'text-zinc-800 text-sm font-medium px-2 py-1 relative overflow-hidden group'
               )}
-            >
-              <motion.span className="relative z-10">{item.label}</motion.span>
+            >              <motion.span className="relative z-10">{item.label}</motion.span>
 
-              {/* Active indicator */}
               {currentUrlPath === item.path && (
                 <motion.span
                   className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary/70 to-purple-500/70"
@@ -81,7 +77,6 @@ export default function Navbar() {
                 />
               )}
 
-              {/* Hover indicator */}
               <motion.span
                 className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary/40 to-purple-500/40 group-hover:w-full transition-all duration-300"
                 style={{ originX: 0 }}
@@ -90,7 +85,6 @@ export default function Navbar() {
           </motion.div>
         ))}
         
-        {/* Admin Dashboard Link - Only visible for admin users */}
         {user?.role === 'admin' && (
           <motion.div
             variants={navItemVariants}
@@ -103,11 +97,9 @@ export default function Navbar() {
               className={cn(
                 'text-purple-600 text-sm font-medium px-2 py-1 relative overflow-hidden group flex items-center'
               )}
-            >
-              <Shield className="w-3.5 h-3.5 mr-1" />
+            >              <Shield className="w-3.5 h-3.5 mr-1" />
               <motion.span className="relative z-10">Admin</motion.span>
 
-              {/* Active indicator */}
               {currentUrlPath === '/admin' && (
                 <motion.span
                   className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500/70 to-indigo-500/70"
@@ -116,7 +108,6 @@ export default function Navbar() {
                 />
               )}
 
-              {/* Hover indicator */}
               <motion.span
                 className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500/40 to-indigo-500/40 group-hover:w-full transition-all duration-300"
                 style={{ originX: 0 }}
@@ -181,17 +172,15 @@ export default function Navbar() {
         whileTap={{ scale: 0.9 }}
       >
         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-      </motion.button>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
+      </motion.button>      {isMobileMenuOpen && (
         <motion.div
           className="fixed inset-0 bg-white z-40 pt-20 pb-6 px-6 flex flex-col md:hidden"
           variants={mobileMenuVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
-        >          <div className="flex flex-col gap-4">
+        >
+          <div className="flex flex-col gap-4">
             {navLinks.map((item, index) => (
               <motion.div
                 key={item.path}
@@ -219,9 +208,7 @@ export default function Navbar() {
                 </Link>
               </motion.div>
             ))}
-            
-            {/* Admin Dashboard Link for Mobile - Only visible for admin users */}
-            {user?.role === 'admin' && (
+              {user?.role === 'admin' && (
               <motion.div
                 custom={navLinks.length}
                 initial={{ opacity: 0, y: 20 }}

@@ -2,7 +2,6 @@ import { Link } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 import { FC } from 'react';
 
-// Import from our consolidated systems
 import { elementAnimations, navAnimations } from '../constants/animationSystem';
 import { renderIcon, svgIcons } from '../constants/icons';
 import { componentStyles, getButtonStyles } from '../constants/uiSystem';

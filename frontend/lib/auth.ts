@@ -52,9 +52,8 @@ export const loginSchema = z.object({
 });
 
 // Auth Service
-export const authService = {
-  // Login function
-  login: async (email: string, password: string): Promise<User | null> => {
+export const authService = {  // Login function
+  login: async (email: string, _password: string): Promise<User | null> => {
     // Simulating network request delay
     await new Promise(resolve => setTimeout(resolve, 800));
 
@@ -96,7 +95,7 @@ export const authService = {
           // Token expired, clean up
           localStorage.removeItem('ngo-auth-token');
         }
-      } catch (error) {
+      } catch (_error) {
         // Invalid token format, clean up
         localStorage.removeItem('ngo-auth-token');
       }
@@ -115,9 +114,8 @@ export const authService = {
     const user = authService.getCurrentUser();
     return user !== null && user.role === 'admin';
   },
-
   // Register function (for demo, just mocks the registration process)
-  register: async (username: string, email: string, password: string): Promise<User | null> => {
+  register: async (username: string, email: string, _password: string): Promise<User | null> => {
     // Simulating network request delay
     await new Promise(resolve => setTimeout(resolve, 800));
 

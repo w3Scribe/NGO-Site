@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { AuthStatus, User, authService } from './auth';
 
 // Define context type
@@ -11,7 +11,7 @@ type AuthContextType = {
 };
 
 // Create context with default values
-const AuthContext = createContext<AuthContextType>({
+export const AuthContext = createContext<AuthContextType>({
   user: null,
   status: 'loading',
   login: async () => null,
@@ -33,7 +33,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(initialUser);
     setStatus(initialUser ? 'authenticated' : 'unauthenticated');
   }, []);
-
   // Login function
   const login = async (email: string, password: string): Promise<User | null> => {
     setStatus('loading');
@@ -43,6 +42,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setStatus(user ? 'authenticated' : 'unauthenticated');
       return user;
     } catch (error) {
+      // Log error in production or handle it appropriately
+      console.error("Login failed:", error);
       setStatus('unauthenticated');
       return null;
     }

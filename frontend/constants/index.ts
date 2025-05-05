@@ -15,6 +15,7 @@ export * from './styles';
 // Legacy exports (to maintain backward compatibility)
 // These will import from the consolidated files above
 export * from './animations';
-export * from './homeAnimations';
+// Re-exporting from homeAnimations but excluding the already exported AuraAnimation interface
+export { heroAuraAnimations, initialStats, targetStats } from './homeAnimations';
 export * from './inlineAnimations';
 

@@ -1,4 +1,4 @@
-import { useAuth } from '@/lib/AuthContext';
+import { useAuth } from '@/lib/useAuth';
 import { Link } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
 import { DollarSign, Home, Settings, Shield, Users } from 'lucide-react';
