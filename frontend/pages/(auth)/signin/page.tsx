@@ -7,8 +7,8 @@ import { Button } from 'components/ui/button';
 import { Checkbox } from 'components/ui/checkbox';
 import { Input } from 'components/ui/input';
 import { motion } from 'framer-motion';
-import { Lock, Mail, User } from 'lucide-react';
-import React from 'react';
+import { Lock, Mail, Shield, User } from 'lucide-react';
+import React, { useState } from 'react';
 
 import {
   Form,
@@ -20,10 +20,20 @@ import {
 } from 'components/ui/form';
 
 // Define the validation schema using Zod
-const formSchema = z.object({
+const userFormSchema = z.object({
   username: z.string().min(2, {
     message: 'Username must be at least 2 characters.',
   }),
+  email: z.string().email({
+    message: 'Please enter a valid email address.',
+  }),
+  password: z.string().min(6, {
+    message: 'Password must be at least 6 characters.',
+  }),
+  remember: z.boolean().default(false).optional(),
+});
+
+const adminFormSchema = z.object({
   email: z.string().email({
     message: 'Please enter a valid email address.',
   }),
@@ -38,6 +48,9 @@ export const Route = createFileRoute('/(auth)/signin/')({
 });
 
 function RouteComponent() {
+  // State to track if user is logging in as admin
+  const [isAdminLogin, setIsAdminLogin] = useState(false);
+
   // Add animation styles to document
   React.useEffect(() => {
     const styleEl = document.createElement('style');
@@ -83,24 +96,50 @@ function RouteComponent() {
   }, []);
 
   // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: '',
-      email: '',
-      password: '',
-      remember: false,
-    },
+  const form = useForm<z.infer<typeof userFormSchema> | z.infer<typeof adminFormSchema>>({
+    resolver: zodResolver(isAdminLogin ? adminFormSchema : userFormSchema),
+    defaultValues: isAdminLogin 
+      ? {
+          email: '',
+          password: '',
+          remember: false,
+        }
+      : {
+          username: '',
+          email: '',
+          password: '',
+          remember: false,
+        },
     mode: 'onChange',
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  // Reset form when switching login modes
+  React.useEffect(() => {
+    form.reset(
+      isAdminLogin 
+        ? {
+            email: '',
+            password: '',
+            remember: false,
+          }
+        : {
+            username: '',
+            email: '',
+            password: '',
+            remember: false,
+          }
+    );
+  }, [isAdminLogin, form]);
+
+  function onSubmit(values: z.infer<typeof userFormSchema> | z.infer<typeof adminFormSchema>) {
+    console.log(values, { isAdminLogin });
+    // Here you would typically make an API call to authenticate the user
+    // and redirect based on successful authentication
   }
 
   return (
     <motion.div
-      className="flex min-h-screen items-center justify-center bg-slate-50 relative overflow-hidden"
+      className="flex min-h-screen items-center justify-center bg-slate-50 relative overflow-hidden pt-16 md:pt-20"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
@@ -158,7 +197,11 @@ function RouteComponent() {
       ></div>
 
       <motion.div
-        className="w-full max-w-md p-8 space-y-6 bg-white shadow-lg rounded-lg border border-gray-100 backdrop-blur-md relative z-10"
+        className={`w-full max-w-sm p-6 space-y-4 bg-white shadow-lg rounded-lg border ${
+          isAdminLogin ? 'border-purple-200' : 'border-gray-100'
+        } backdrop-blur-md relative z-10 ${
+          isAdminLogin ? 'bg-gradient-to-br from-white to-purple-50' : 'bg-white'
+        }`}
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{
@@ -175,31 +218,69 @@ function RouteComponent() {
         }}
       >
         <motion.h2
-          className="text-2xl font-bold text-center bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent"
+          className={`text-xl font-bold text-center bg-gradient-to-r ${
+            isAdminLogin 
+              ? 'from-purple-600 to-indigo-600' 
+              : 'from-primary to-purple-600'
+          } bg-clip-text text-transparent`}
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          Sign In
+          {isAdminLogin ? 'Admin Sign In' : 'Sign In'}
         </motion.h2>
+        
+        {/* Admin login toggle */}
+        <motion.div
+          className="flex justify-center items-center mb-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
+          <button
+            type="button"
+            onClick={() => setIsAdminLogin(false)}
+            className={`px-3 py-1.5 text-xs rounded-l-md transition-colors ${
+              !isAdminLogin
+                ? 'bg-primary text-white'
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            }`}
+          >
+            Regular User
+          </button>
+          <button
+            type="button"
+            onClick={() => setIsAdminLogin(true)}
+            className={`px-3 py-1.5 text-xs rounded-r-md flex items-center transition-colors ${
+              isAdminLogin
+                ? 'bg-primary text-white'
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            }`}
+          >
+            <Shield className="h-3 w-3 mr-1" /> Admin
+          </button>
+        </motion.div>
+        
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="username"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Username</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input placeholder="Enter your username" {...field} />
-                      <User className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+            {!isAdminLogin && (
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Username</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Input placeholder="Enter your username" {...field} />
+                        <User className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-3.5 w-3.5" />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
             <FormField
               control={form.control}
               name="email"
@@ -211,9 +292,13 @@ function RouteComponent() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.5, duration: 0.5 }}
                     >
-                      <Mail className="w-4 h-4 mr-2" />
+                      {isAdminLogin ? (
+                        <Shield className="w-3.5 h-3.5 mr-2 text-purple-600" />
+                      ) : (
+                        <Mail className="w-3.5 h-3.5 mr-2" />
+                      )}
                     </motion.div>
-                    Email
+                    {isAdminLogin ? 'Admin Email' : 'Email'}
                   </FormLabel>
                   <FormControl>
                     <motion.div
@@ -226,19 +311,36 @@ function RouteComponent() {
                     >
                       <Input
                         type="email"
-                        placeholder="Enter your email"
+                        placeholder={isAdminLogin ? "Enter admin email" : "Enter your email"}
                         {...field}
-                        className="hover:border-primary/50 focus-visible:ring-primary/30"
+                        className={`hover:border-primary/50 focus-visible:ring-primary/30 ${
+                          isAdminLogin ? 'border-purple-200 focus:border-purple-400' : ''
+                        }`}
                       />
                       <motion.div
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                         whileHover={{ rotate: 10 }}
                       >
-                        <Mail className="h-4 w-4" />
+                        {isAdminLogin ? (
+                          <Shield className="h-3.5 w-3.5 text-purple-400" />
+                        ) : (
+                          <Mail className="h-3.5 w-3.5" />
+                        )}
                       </motion.div>
                     </motion.div>
                   </FormControl>
                   <FormMessage />
+                  {isAdminLogin && (
+                    <motion.p 
+                      className="text-[10px] text-purple-600 mt-1 flex items-center"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                    >
+                      <Shield className="h-2.5 w-2.5 mr-1" /> 
+                      Admin access requires authorized email
+                    </motion.p>
+                  )}
                 </FormItem>
               )}
             />
@@ -253,7 +355,7 @@ function RouteComponent() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.6, duration: 0.5 }}
                     >
-                      <Lock className="w-4 h-4 mr-2" />
+                      <Lock className="w-3.5 h-3.5 mr-2" />
                     </motion.div>
                     Password
                   </FormLabel>
@@ -276,7 +378,7 @@ function RouteComponent() {
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
                         whileHover={{ rotate: 10 }}
                       >
-                        <Lock className="h-4 w-4" />
+                        <Lock className="h-3.5 w-3.5" />
                       </motion.div>
                     </motion.div>
                   </FormControl>
@@ -293,7 +395,7 @@ function RouteComponent() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7, duration: 0.5 }}
                 >
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow hover:border-primary/20 transition-colors duration-200">
+                  <FormItem className="flex flex-row items-start space-x-2 space-y-0 rounded-md border p-3 shadow hover:border-primary/20 transition-colors duration-200">
                     <FormControl>
                       <Checkbox
                         checked={field.value}
@@ -301,7 +403,7 @@ function RouteComponent() {
                       />
                     </FormControl>
                     <div className="space-y-1 leading-none">
-                      <FormLabel>Remember me</FormLabel>
+                      <FormLabel className="text-xs">Remember me</FormLabel>
                     </div>
                   </FormItem>
                 </motion.div>
@@ -316,9 +418,20 @@ function RouteComponent() {
             >
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-700 transition-all duration-300"
+                className={`w-full transition-all duration-300 ${
+                  isAdminLogin 
+                    ? 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700' 
+                    : 'bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-700'
+                }`}
               >
-                Sign In
+                {isAdminLogin ? (
+                  <span className="flex items-center">
+                    <Shield className="mr-2 h-4 w-4" /> 
+                    Admin Sign In
+                  </span>
+                ) : (
+                  'Sign In'
+                )}
               </Button>
             </motion.div>
           </form>

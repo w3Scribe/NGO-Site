@@ -1,34 +1,18 @@
+// LEGACY FILE: This file is maintained for backward compatibility.
+// New code should import from the consolidated animationSystem.ts file.
+import { elementAnimations, navAnimations } from './animationSystem';
+
 // Logo underline animation
-export const logoUnderlineAnimation = {
-  initial: { width: 0 },
-  animate: (isHome: boolean) => ({
-    width: isHome ? '100%' : '30%',
-  }),
-  transition: { duration: 0.3 },
-};
+export const logoUnderlineAnimation = navAnimations.logoUnderline;
 
 // Arrow icon hover animation
-export const arrowHoverAnimation = {
-  initial: { x: 0 },
-  whileHover: { x: 3 },
-  transition: { type: 'spring', stiffness: 400 },
-};
+export const arrowHoverAnimation = elementAnimations.arrowHover;
 
 // Mobile menu item animation
-export const mobileMenuItemAnimation = (index: number) => ({
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { delay: index * 0.1 },
-});
+export const mobileMenuItemAnimation = navAnimations.mobileMenuItem;
 
 // Mobile sign-in button animation
-export const mobileSignInAnimation = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  transition: { delay: 0.4 },
-};
+export const mobileSignInAnimation = navAnimations.mobileSignIn;
 
 // Mobile menu button animation
-export const mobileMenuButtonAnimation = {
-  whileTap: { scale: 0.9 },
-};
+export const mobileMenuButtonAnimation = navAnimations.mobileMenuButton;

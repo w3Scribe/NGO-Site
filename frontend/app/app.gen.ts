@@ -10,14 +10,15 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './../pages/__root';
-import { Route as PageImport } from './../pages/page';
-import { Route as DashboardPageImport } from './../pages/dashboard/page';
-import { Route as ContactPageImport } from './../pages/contact/page';
-import { Route as AboutPageImport } from './../pages/about/page';
-import { Route as NGOsPageImport } from './../pages/NGOs/page';
-import { Route as authSignupPageImport } from './../pages/(auth)/signup/page';
-import { Route as authSigninPageImport } from './../pages/(auth)/signin/page';
+import { Route as rootRoute } from './../pages/__root'
+import { Route as PageImport } from './../pages/page'
+import { Route as DashboardPageImport } from './../pages/dashboard/page'
+import { Route as ContactPageImport } from './../pages/contact/page'
+import { Route as AdminPageImport } from './../pages/admin/page'
+import { Route as AboutPageImport } from './../pages/about/page'
+import { Route as NGOsPageImport } from './../pages/NGOs/page'
+import { Route as authSignupPageImport } from './../pages/(auth)/signup/page'
+import { Route as authSigninPageImport } from './../pages/(auth)/signin/page'
 
 // Create/Update Routes
 
@@ -25,187 +26,208 @@ const PageRoute = PageImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const DashboardPageRoute = DashboardPageImport.update({
   id: '/dashboard/',
   path: '/dashboard/',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const ContactPageRoute = ContactPageImport.update({
   id: '/contact/',
   path: '/contact/',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
+
+const AdminPageRoute = AdminPageImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AboutPageRoute = AboutPageImport.update({
   id: '/about/',
   path: '/about/',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const NGOsPageRoute = NGOsPageImport.update({
   id: '/NGOs/',
   path: '/NGOs/',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const authSignupPageRoute = authSignupPageImport.update({
   id: '/(auth)/signup/',
   path: '/signup/',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 const authSigninPageRoute = authSigninPageImport.update({
   id: '/(auth)/signin/',
   path: '/signin/',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
-      id: '/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof PageImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof PageImport
+      parentRoute: typeof rootRoute
+    }
     '/NGOs/': {
-      id: '/NGOs/';
-      path: '/NGOs';
-      fullPath: '/NGOs';
-      preLoaderRoute: typeof NGOsPageImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/NGOs/'
+      path: '/NGOs'
+      fullPath: '/NGOs'
+      preLoaderRoute: typeof NGOsPageImport
+      parentRoute: typeof rootRoute
+    }
     '/about/': {
-      id: '/about/';
-      path: '/about';
-      fullPath: '/about';
-      preLoaderRoute: typeof AboutPageImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/about/'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutPageImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminPageImport
+      parentRoute: typeof rootRoute
+    }
     '/contact/': {
-      id: '/contact/';
-      path: '/contact';
-      fullPath: '/contact';
-      preLoaderRoute: typeof ContactPageImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/contact/'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactPageImport
+      parentRoute: typeof rootRoute
+    }
     '/dashboard/': {
-      id: '/dashboard/';
-      path: '/dashboard';
-      fullPath: '/dashboard';
-      preLoaderRoute: typeof DashboardPageImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardPageImport
+      parentRoute: typeof rootRoute
+    }
     '/(auth)/signin/': {
-      id: '/(auth)/signin/';
-      path: '/signin';
-      fullPath: '/signin';
-      preLoaderRoute: typeof authSigninPageImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/(auth)/signin/'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof authSigninPageImport
+      parentRoute: typeof rootRoute
+    }
     '/(auth)/signup/': {
-      id: '/(auth)/signup/';
-      path: '/signup';
-      fullPath: '/signup';
-      preLoaderRoute: typeof authSignupPageImport;
-      parentRoute: typeof rootRoute;
-    };
+      id: '/(auth)/signup/'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof authSignupPageImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof PageRoute;
-  '/NGOs': typeof NGOsPageRoute;
-  '/about': typeof AboutPageRoute;
-  '/contact': typeof ContactPageRoute;
-  '/dashboard': typeof DashboardPageRoute;
-  '/signin': typeof authSigninPageRoute;
-  '/signup': typeof authSignupPageRoute;
+  '/': typeof PageRoute
+  '/NGOs': typeof NGOsPageRoute
+  '/about': typeof AboutPageRoute
+  '/admin': typeof AdminPageRoute
+  '/contact': typeof ContactPageRoute
+  '/dashboard': typeof DashboardPageRoute
+  '/signin': typeof authSigninPageRoute
+  '/signup': typeof authSignupPageRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof PageRoute;
-  '/NGOs': typeof NGOsPageRoute;
-  '/about': typeof AboutPageRoute;
-  '/contact': typeof ContactPageRoute;
-  '/dashboard': typeof DashboardPageRoute;
-  '/signin': typeof authSigninPageRoute;
-  '/signup': typeof authSignupPageRoute;
+  '/': typeof PageRoute
+  '/NGOs': typeof NGOsPageRoute
+  '/about': typeof AboutPageRoute
+  '/admin': typeof AdminPageRoute
+  '/contact': typeof ContactPageRoute
+  '/dashboard': typeof DashboardPageRoute
+  '/signin': typeof authSigninPageRoute
+  '/signup': typeof authSignupPageRoute
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  '/': typeof PageRoute;
-  '/NGOs/': typeof NGOsPageRoute;
-  '/about/': typeof AboutPageRoute;
-  '/contact/': typeof ContactPageRoute;
-  '/dashboard/': typeof DashboardPageRoute;
-  '/(auth)/signin/': typeof authSigninPageRoute;
-  '/(auth)/signup/': typeof authSignupPageRoute;
+  __root__: typeof rootRoute
+  '/': typeof PageRoute
+  '/NGOs/': typeof NGOsPageRoute
+  '/about/': typeof AboutPageRoute
+  '/admin/': typeof AdminPageRoute
+  '/contact/': typeof ContactPageRoute
+  '/dashboard/': typeof DashboardPageRoute
+  '/(auth)/signin/': typeof authSigninPageRoute
+  '/(auth)/signup/': typeof authSignupPageRoute
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
+  fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/NGOs'
     | '/about'
+    | '/admin'
     | '/contact'
     | '/dashboard'
     | '/signin'
-    | '/signup';
-  fileRoutesByTo: FileRoutesByTo;
+    | '/signup'
+  fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/NGOs'
     | '/about'
+    | '/admin'
     | '/contact'
     | '/dashboard'
     | '/signin'
-    | '/signup';
+    | '/signup'
   id:
     | '__root__'
     | '/'
     | '/NGOs/'
     | '/about/'
+    | '/admin/'
     | '/contact/'
     | '/dashboard/'
     | '/(auth)/signin/'
-    | '/(auth)/signup/';
-  fileRoutesById: FileRoutesById;
+    | '/(auth)/signup/'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  PageRoute: typeof PageRoute;
-  NGOsPageRoute: typeof NGOsPageRoute;
-  AboutPageRoute: typeof AboutPageRoute;
-  ContactPageRoute: typeof ContactPageRoute;
-  DashboardPageRoute: typeof DashboardPageRoute;
-  authSigninPageRoute: typeof authSigninPageRoute;
-  authSignupPageRoute: typeof authSignupPageRoute;
+  PageRoute: typeof PageRoute
+  NGOsPageRoute: typeof NGOsPageRoute
+  AboutPageRoute: typeof AboutPageRoute
+  AdminPageRoute: typeof AdminPageRoute
+  ContactPageRoute: typeof ContactPageRoute
+  DashboardPageRoute: typeof DashboardPageRoute
+  authSigninPageRoute: typeof authSigninPageRoute
+  authSignupPageRoute: typeof authSignupPageRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   PageRoute: PageRoute,
   NGOsPageRoute: NGOsPageRoute,
   AboutPageRoute: AboutPageRoute,
+  AdminPageRoute: AdminPageRoute,
   ContactPageRoute: ContactPageRoute,
   DashboardPageRoute: DashboardPageRoute,
   authSigninPageRoute: authSigninPageRoute,
   authSignupPageRoute: authSignupPageRoute,
-};
+}
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
 /* ROUTE_MANIFEST_START
 {
@@ -216,6 +238,7 @@ export const routeTree = rootRoute
         "/",
         "/NGOs/",
         "/about/",
+        "/admin/",
         "/contact/",
         "/dashboard/",
         "/(auth)/signin/",
@@ -230,6 +253,9 @@ export const routeTree = rootRoute
     },
     "/about/": {
       "filePath": "about/page.tsx"
+    },
+    "/admin/": {
+      "filePath": "admin/page.tsx"
     },
     "/contact/": {
       "filePath": "contact/page.tsx"

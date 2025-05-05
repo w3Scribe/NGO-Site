@@ -126,7 +126,7 @@ function RouteComponent() {
     >
       {/* Hero Section with Texture/Aura Effect */}
       <motion.section
-        className="relative h-[85vh] bg-cover bg-center flex items-center overflow-hidden"
+        className="relative h-[100vh] bg-cover bg-center flex items-center overflow-hidden"
         style={{ backgroundImage: "url('/home.jpg')" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -185,10 +185,10 @@ function RouteComponent() {
         ></motion.div>
 
         {/* Content */}
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative z-10 pt-10">
           <div className="max-w-3xl text-white">
             <motion.h1
-              className="text-5xl md:text-6xl font-bold mb-4"
+              className="text-6xl md:text-7xl font-bold mb-5"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -201,7 +201,7 @@ function RouteComponent() {
               Together We Can Make A Difference
             </motion.h1>
             <motion.p
-              className="text-xl md:text-2xl mb-8"
+              className="text-xl md:text-2xl mb-10"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
@@ -233,7 +233,7 @@ function RouteComponent() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-primary hover:bg-primary/90 text-lg transition-all duration-200 group shadow-md"
+                  className="bg-primary hover:bg-primary/90 text-lg px-8 py-6 transition-all duration-200 group shadow-md"
                 >
                   <a href="/NGOs" className="flex items-center justify-center">
                     <span>Donate Now</span>
@@ -272,7 +272,7 @@ function RouteComponent() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="border border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-200 group text-lg"
+                  className="border border-white text-white bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-200 group text-lg px-8 py-6"
                 >
                   <a
                     href="/contact"

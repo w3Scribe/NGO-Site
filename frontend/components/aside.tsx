@@ -1,16 +1,27 @@
+import { useAuth } from '@/lib/AuthContext';
 import { Link } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
+import { DollarSign, Home, Settings, Shield, Users } from 'lucide-react';
 
 export default function Aside() {
+  const { user } = useAuth();
+  
   const navItems = [
-    { title: 'Dashboard', path: '/dashboard', icon: '📊' },
-    { title: 'Analytics', path: '/dashboard/analytics', icon: '📈' },
-    { title: 'Projects', path: '/dashboard/projects', icon: '📁' },
-    { title: 'Tasks', path: '/dashboard/tasks', icon: '✓' },
-    { title: 'Calendar', path: '/dashboard/calendar', icon: '📅' },
-    { title: 'Settings', path: '/dashboard/settings', icon: '⚙️' },
+    { title: 'Dashboard', path: '/dashboard', icon: 'home' },
+    { title: 'Volunteers', path: '/dashboard/volunteers', icon: 'users' },
+    { title: 'Donations', path: '/dashboard/donations', icon: 'dollar-sign' },
+    { title: 'Settings', path: '/dashboard/settings', icon: 'settings' },
   ];
-
+  
+  // Add admin link for admin users
+  const getNavItems = () => {
+    const items = [...navItems];
+    if (user?.role === 'admin') {
+      items.push({ title: 'Admin Panel', path: '/admin', icon: 'shield' });
+    }
+    return items;
+  };
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -32,7 +43,7 @@ export default function Aside() {
   };
 
   return (
-    <aside className="h-full py-6 px-4 flex flex-col justify-between">
+    <aside className="h-full pt-4 pb-6 px-4 flex flex-col justify-between">
       <div>
         <motion.div
           className="mb-8"
@@ -40,16 +51,20 @@ export default function Aside() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-xl font-bold text-gray-800">CharitySmile</h2>
+          <div className="flex items-center">
+            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center mr-3">
+              <span className="text-white font-bold">AC</span>
+            </div>            <h2 className="text-xl font-bold text-gray-800">Asgav Charity</h2>
+          </div>
         </motion.div>
-
+        
         <motion.nav
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           <ul className="space-y-2">
-            {navItems.map((item) => (
+            {getNavItems().map((item) => (
               <motion.li
                 key={item.path}
                 variants={itemVariants}
@@ -63,20 +78,24 @@ export default function Aside() {
                     className: 'bg-slate-200 text-gray-900 font-medium',
                   }}
                 >
-                  <motion.span
+                  <motion.div
                     whileHover={{ rotate: 15 }}
                     transition={{ type: 'spring', stiffness: 500 }}
+                    className={item.icon === 'shield' ? 'text-purple-600' : 'text-gray-500'}
                   >
-                    {item.icon}
-                  </motion.span>
-                  <span>{item.title}</span>
+                    {item.icon === 'home' && <Home size={20} />}
+                    {item.icon === 'dollar-sign' && <DollarSign size={20} />}
+                    {item.icon === 'users' && <Users size={20} />}
+                    {item.icon === 'settings' && <Settings size={20} />}
+                    {item.icon === 'shield' && <Shield size={20} />}
+                  </motion.div>
+                  <span className={item.icon === 'shield' ? 'text-purple-600' : ''}>{item.title}</span>
                 </Link>
               </motion.li>
-            ))}
-          </ul>
+            ))}          </ul>
         </motion.nav>
       </div>
-
+      
       <motion.div
         className="mt-auto pt-6 border-t border-gray-200"
         initial={{ opacity: 0, y: 20 }}
@@ -91,15 +110,24 @@ export default function Aside() {
           }}
         >
           <motion.div
-            className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center"
+            className={`w-10 h-10 rounded-full flex items-center justify-center ${
+              user?.role === 'admin' ? 'bg-purple-100' : 'bg-gray-300'
+            }`}
             whileHover={{ scale: 1.1 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
-            👤
+            {user?.role === 'admin' ? <Shield size={16} className="text-purple-600" /> : '👤'}
           </motion.div>
           <div>
-            <p className="font-medium text-gray-800">User Name</p>
-            <p className="text-sm text-gray-500">user@example.com</p>
+            <p className="font-medium text-gray-800">{user?.name || user?.username || 'Guest'}</p>
+            <p className="text-sm text-gray-500">
+              {user?.email || 'Not signed in'}
+              {user?.role === 'admin' && (
+                <span className="ml-1 text-[10px] text-purple-600 bg-purple-50 px-1.5 py-0.5 rounded-full">
+                  Admin
+                </span>
+              )}
+            </p>
           </div>
         </motion.div>
       </motion.div>

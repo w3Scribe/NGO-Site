@@ -69,10 +69,9 @@ function SignupPage() {
   const onSubmit = (values: z.infer<typeof signupSchema>) => {
     console.log('Signup data:', values);
   };
-
   return (
     <motion.div
-      className="flex min-h-screen items-center justify-center bg-slate-50 relative overflow-hidden"
+      className="flex min-h-screen items-center justify-center bg-slate-50 relative overflow-hidden pt-16 md:pt-20"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -119,10 +118,8 @@ function SignupPage() {
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           backgroundSize: '200px',
         }}
-      ></div>
-
-      <motion.div
-        className="w-full max-w-md p-8 space-y-6 bg-white shadow-lg rounded-lg border border-gray-100 backdrop-blur-md relative z-10"
+      ></div>      <motion.div
+        className="w-full max-w-sm p-6 space-y-4 bg-white shadow-lg rounded-lg border border-gray-100 backdrop-blur-md relative z-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -130,9 +127,8 @@ function SignupPage() {
           boxShadow:
             '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
         }}
-      >
-        <motion.h2
-          className="text-2xl font-bold text-center bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent"
+      >        <motion.h2
+          className="text-xl font-bold text-center bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -140,12 +136,11 @@ function SignupPage() {
           Create an Account
         </motion.h2>
 
-        <Form {...form}>
-          <motion.div
+        <Form {...form}>          <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="space-y-4"
+            className="space-y-3"
           >
             {/* Username */}
             <motion.div variants={itemVariants}>
