@@ -1,7 +1,7 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router';
-import Navbar from 'components/navbar';
 import { AnimatePresence, motion } from 'framer-motion';
 import * as React from 'react';
+import Navbar from '../components/navbar';
 
 export const Route = createRootRoute({
   component: RootComponent,

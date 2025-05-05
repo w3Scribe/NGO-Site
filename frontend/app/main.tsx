@@ -1,7 +1,7 @@
-import { AuthProvider } from '@/lib/AuthContext';
 import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
+import { AuthProvider } from '../lib/AuthContext';
 import './index.css';
 
 import { routeTree } from './app.gen';

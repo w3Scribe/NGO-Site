@@ -31,6 +31,8 @@ export default defineConfig({
       '@utils': path.resolve(__dirname, './utils'),
       '@assets': path.resolve(__dirname, './assets'),
       '@public': path.resolve(__dirname, './public'),
+      'components': path.resolve(__dirname, './components'),
+      'lib': path.resolve(__dirname, './lib'),
     },
   },
   server: {

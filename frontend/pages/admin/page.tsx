@@ -1,11 +1,11 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useAuth } from '@/lib/AuthContext';
 import { createFileRoute } from '@tanstack/react-router';
-import ProtectedRoute from 'components/protected-route';
-import { Button } from 'components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from 'components/ui/tabs';
 import { motion } from 'framer-motion';
 import { Bell, FileText, PlusCircle, Settings, Shield, UserCog, Users } from 'lucide-react';
+import ProtectedRoute from '../../components/protected-route';
+import { Button } from '../../components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs';
+import { useAuth } from '../../lib/AuthContext';
 
 export const Route = createFileRoute('/admin/')({
   component: RouteComponent,
