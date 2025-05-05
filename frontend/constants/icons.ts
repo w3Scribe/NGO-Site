@@ -64,8 +64,8 @@ export const renderIcon = (
     fill: "none",
     stroke: "currentColor",
     strokeWidth,
-    strokeLinecap: "round" as "round",
-    strokeLinejoin: "round" as "round",
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
     path: icon.path
   };
 };
